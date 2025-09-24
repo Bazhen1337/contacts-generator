@@ -1,11 +1,15 @@
 <?
 require_once (__DIR__.'/contactsGenerator.php');
 require_once (__DIR__.'/dealsGenerator.php');
+require_once (__DIR__.'/contactsList.php');
 
-$result = new contactsGenerator();
-$result->generate(countContacts);
+$contacts = new contactsGenerator();
+$contacts->generate(countContacts);
 
 $deals = new dealsGenerator();
-$deals->generate(countDeals, $result->contact_ids);
+$deals->generate(countDeals, $contacts->contact_ids);
 
-echo "Скрипт закончил работу";
+$result = new contactsList();
+$result->getContactsWithDeals();
+
+echo "<br>" . "Скрипт закончил работу";

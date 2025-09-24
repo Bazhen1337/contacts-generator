@@ -46,7 +46,6 @@ class contactsGenerator
                 echo "Ошибка создания контакта: " . json_encode($result) . "<br>";
             }
 
-            // Пауза чтобы не превысить лимиты API
             sleep(1);
         }
     }
