@@ -1,11 +1,11 @@
 <?
-require_once (__DIR__.'/crest.php');
+require_once (__DIR__.'/contactsGenerator.php');
+require_once (__DIR__.'/dealsGenerator.php');
 
-$result = CRest::call(
-		'crm.contact.add',
-		{{query[params][PARAMS]}}
-	);
+$result = new contactsGenerator();
+$result->generate(countContacts);
 
-echo '<pre>';
-	print_r($result);
-echo '</pre>';
+$deals = new dealsGenerator();
+$deals->generate(countDeals, $result->contact_ids);
+
+echo "Скрипт закончил работу";
